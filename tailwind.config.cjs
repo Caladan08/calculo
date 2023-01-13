@@ -2,7 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sofiasans: ["Sofia Sans"],
+      },
+      colors: {
+        background: "#161212",
+      },
+    },
   },
   plugins: [],
 };
