@@ -4,21 +4,17 @@
   import { SvelteUIProvider } from "@svelteuidev/core";
 </script>
 
-<SvelteUIProvider>
-  <div class="content">
+<SvelteUIProvider override={{ height: "100vh" }}>
+  <div class="h-full">
     <Navbar />
-    <slot />
+    <div class="content bg-[#3d3b3b]">
+      <slot />
+    </div>
   </div>
 </SvelteUIProvider>
 
 <style>
   .content {
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 1) 600px
-      ),
-      fixed 0 0 / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0),
-      fixed 10px 10px / 20px 20px radial-gradient(#d1d1d1 1px, transparent 0);
+    height: 100%;
   }
 </style>

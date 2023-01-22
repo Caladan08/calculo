@@ -8,6 +8,7 @@ module.exports = {
       },
       colors: {
         background: "#161212",
+        primary: "#fdcd05"
       },
     },
   },

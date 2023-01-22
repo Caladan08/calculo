@@ -25,6 +25,7 @@
 	"dependencies": {
 		"@svelteuidev/composables": "^0.7.7",
 		"@svelteuidev/core": "^0.7.7",
-		"@svelteuidev/motion": "^0.7.7"
+		"@svelteuidev/motion": "^0.7.7",
+		"carbon-icons-svelte": "^11.4.0"
 	}
 }
