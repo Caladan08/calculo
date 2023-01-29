@@ -64,6 +64,8 @@
       type="number"
       bind:value={$currentConversion.from.inputted}
       on:input={changeValue}
+      id="convert-from"
+      label="The value to be converted"
     />
   </Group>
   <Group position="center" direction="column" class="my-auto mt-20">
@@ -103,6 +105,8 @@
       type="number"
       bind:value={$currentConversion.to.inputted}
       on:input={changeValue}
+      id="convert-to"
+      label="The converted value"
     />
   </Group>
 </div>
