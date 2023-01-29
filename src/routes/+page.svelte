@@ -5,38 +5,49 @@
   import ArrowRight from "carbon-icons-svelte/lib/ArrowRight.svelte";
 
   function changeToValue(value: String) {
-    const changeToData = $conversionData.filter((val) => val.value === value)
+    const changeToData = $conversionData.filter((val) => val.value === value);
     const newCurrentConversion = {
       from: $currentConversion.from,
       to: {
         ...$currentConversion.to,
         name: changeToData[0].name,
-        value: changeToData[0].value
-      }
-    }
-    currentConversion.set(newCurrentConversion)
-    localStorage.setItem("currentConversion", JSON.stringify($currentConversion))
-    changeValue()
+        value: changeToData[0].value,
+      },
+    };
+    currentConversion.set(newCurrentConversion);
+    localStorage.setItem(
+      "currentConversion",
+      JSON.stringify($currentConversion)
+    );
+    changeValue();
   }
-  
+
   function changeValue() {
-    const currentPxValue = parseInt($currentConversion.from.inputted)
-    const toTypeValue = $conversionData.filter((val) => val.value === $currentConversion.to.value)[0].convert
+    const currentPxValue = parseInt($currentConversion.from.inputted);
+    const toTypeValue = $conversionData.filter(
+      (val) => val.value === $currentConversion.to.value
+    )[0].convert;
     const newCurrentConversion = {
       from: $currentConversion.from,
       to: {
         ...$currentConversion.to,
-        inputted: (currentPxValue / toTypeValue).toString()
-      }
-    }
-    currentConversion.set(newCurrentConversion)
-    localStorage.setItem("currentConversion", JSON.stringify($currentConversion))
+        inputted: (currentPxValue / toTypeValue).toString(),
+      },
+    };
+    currentConversion.set(newCurrentConversion);
+    localStorage.setItem(
+      "currentConversion",
+      JSON.stringify($currentConversion)
+    );
   }
 </script>
 
 <svelte:head>
   <title>Calculo</title>
-  <meta name="description" content="The easiest way to quickly convert pixels to REMs or pixels to EMs!" />
+  <meta
+    name="description"
+    content="The easiest way to quickly convert pixels to REMs or pixels to EMs!"
+  />
 </svelte:head>
 
 <h1 class="text-5xl text-white pt-20" align="center">
@@ -44,12 +55,14 @@
 </h1>
 <div class="w-full flex justify-center gap-10 pt-10 px-6">
   <Group position="center" direction="column" class="!items-center">
-    <div class="dropdown relative inline-block">
-      <h1 class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default"
-        >{$currentConversion.from.name} ({$currentConversion.from
-          .value})</h1
-      >
-    </div>
+    <!-- <div class="dropdown relative inline-block">
+      <h1 class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default">
+        {$currentConversion.from.name} ({$currentConversion.from.value})
+      </h1>
+    </div> -->
+    <label for="convert-from" class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default"
+      >{$currentConversion.from.name} ({$currentConversion.from.value})</label
+    >
     <Input
       override={{
         input: {
@@ -58,7 +71,7 @@
           backgroundColor: "#3d3b3b !important",
           textAlign: "center !important",
           border: "1px solid #fdcd05 !important",
-          color: "#ffffff !important"
+          color: "#ffffff !important",
         },
       }}
       type="number"
@@ -80,15 +93,19 @@
         class="dropdown-content hidden absolute bg-[#f1f1f1] min-w-[160px] shadow-lg z-[1] rounded-md"
       >
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <p class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-all ease-in duration-100"
+        <p
+          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-all ease-in duration-100"
           on:click={() => changeToValue("em")}
-          >EM (em)</p
         >
+          EM (em)
+        </p>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <p class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-all ease-in duration-100"
+        <p
+          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-all ease-in duration-100"
           on:click={() => changeToValue("rem")}
-          >REM (rem)</p
         >
+          REM (rem)
+        </p>
       </div>
     </div>
     <Input
@@ -99,7 +116,7 @@
           backgroundColor: "#3d3b3b !important",
           textAlign: "center !important",
           border: "1px solid #fdcd05 !important",
-          color: "#ffffff !important"
+          color: "#ffffff !important",
         },
       }}
       type="number"
