@@ -36,7 +36,7 @@
 
 <svelte:head>
   <title>Calculo</title>
-  <description>The easiest way to quickly convert pixels to REMs or pixels to EMs!</description>
+  <meta name="description" content="The easiest way to quickly convert pixels to REMs or pixels to EMs!" />
 </svelte:head>
 
 <h1 class="text-5xl text-white pt-20" align="center">
