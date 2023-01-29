@@ -3,6 +3,8 @@
   import { conversionData } from "$lib/stores/conversionData";
   import { currentConversion } from "$lib/stores/currentConversion";
   import ArrowRight from "carbon-icons-svelte/lib/ArrowRight.svelte";
+  import ArrowDown from "carbon-icons-svelte/lib/ArrowDown.svelte";
+  import MediaQuery from "$lib/components/MediaQuery.svelte";
 
   function changeToValue(value: String) {
     const changeToData = $conversionData.filter((val) => val.value === value);
@@ -50,83 +52,162 @@
   />
 </svelte:head>
 
-<h1 class="text-5xl text-white pt-20" align="center">
+<h1 class="text-5xl text-white pt-20 px-6" align="center">
   {$currentConversion.from.name} to {$currentConversion.to.name} Converter
 </h1>
-<div class="w-full flex justify-center gap-10 pt-10 px-6">
-  <Group position="center" direction="column" class="!items-center">
-    <!-- <div class="dropdown relative inline-block">
-      <h1 class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default">
-        {$currentConversion.from.name} ({$currentConversion.from.value})
-      </h1>
-    </div> -->
-    <label for="convert-from" class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default"
-      >{$currentConversion.from.name} ({$currentConversion.from.value})</label
-    >
-    <Input
-      override={{
-        input: {
-          py: "2rem",
-          fontSize: "2rem",
-          backgroundColor: "#3d3b3b !important",
-          textAlign: "center !important",
-          border: "1px solid #fdcd05 !important",
-          color: "#ffffff !important",
-        },
-      }}
-      type="number"
-      bind:value={$currentConversion.from.inputted}
-      on:input={changeValue}
-      id="convert-from"
-      label="The value to be converted"
-    />
-  </Group>
-  <Group position="center" direction="column" class="my-auto mt-20">
-    <ArrowRight size={32} fill="#fdcd05" class="cursor-default" />
-  </Group>
-  <Group position="center" direction="column" class="!items-center">
-    <div class="dropdown relative inline-block">
-      <button class="text-primary rounded-md pt-4 px-4 text-2xl"
-        >{$currentConversion.to.name} ({$currentConversion.to.value})</button
-      >
-      <div
-        class="dropdown-content hidden absolute bg-[#f1f1f1] min-w-[160px] shadow-lg z-[1] rounded-md"
-      >
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <p
-          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-all ease-in duration-100"
-          on:click={() => changeToValue("em")}
+<MediaQuery query="(min-width: 527px)" let:matches>
+  {#if matches}
+    <div class="w-full flex justify-center gap-10 pt-10 px-6">
+      <Group position="center" direction="column" class="items-center">
+        <label
+          for="convert-from"
+          class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default"
+          >{$currentConversion.from.name} ({$currentConversion.from
+            .value})</label
         >
-          EM (em)
-        </p>
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <p
-          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-all ease-in duration-100"
-          on:click={() => changeToValue("rem")}
-        >
-          REM (rem)
-        </p>
-      </div>
+        <Input
+          override={{
+            input: {
+              py: "2rem",
+              fontSize: "2rem",
+              backgroundColor: "#3d3b3b !important",
+              textAlign: "center !important",
+              border: "1px solid #fdcd05 !important",
+              color: "#ffffff !important",
+            },
+          }}
+          type="number"
+          bind:value={$currentConversion.from.inputted}
+          on:input={changeValue}
+          id="convert-from"
+          label="The value to be converted"
+        />
+      </Group>
+      <Group position="center" direction="column" class="my-auto mt-20">
+        <ArrowRight size={32} fill="#fdcd05" class="cursor-default" />
+      </Group>
+      <Group position="center" direction="column" class="!items-center">
+        <div class="dropdown relative inline-block">
+          <button class="text-primary rounded-md pt-4 px-4 text-2xl" for="convert-to"
+            >{$currentConversion.to.name} ({$currentConversion.to
+              .value})</button
+          >
+          <div
+            class="dropdown-content hidden absolute bg-[#f1f1f1] min-w-[160px] shadow-lg z-[1] rounded-md"
+          >
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <p
+              class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-all ease-in duration-100"
+              on:click={() => changeToValue("em")}
+            >
+              EM (em)
+            </p>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <p
+              class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-all ease-in duration-100"
+              on:click={() => changeToValue("rem")}
+            >
+              REM (rem)
+            </p>
+          </div>
+        </div>
+        <Input
+          override={{
+            input: {
+              py: "2rem",
+              fontSize: "2rem",
+              backgroundColor: "#3d3b3b !important",
+              textAlign: "center !important",
+              border: "1px solid #fdcd05 !important",
+              color: "#ffffff !important",
+            },
+          }}
+          type="number"
+          bind:value={$currentConversion.to.inputted}
+          on:input={changeValue}
+          id="convert-to"
+          label="The converted value"
+        />
+      </Group>
     </div>
-    <Input
-      override={{
-        input: {
-          py: "2rem",
-          fontSize: "2rem",
-          backgroundColor: "#3d3b3b !important",
-          textAlign: "center !important",
-          border: "1px solid #fdcd05 !important",
-          color: "#ffffff !important",
-        },
-      }}
-      type="number"
-      bind:value={$currentConversion.to.inputted}
-      on:input={changeValue}
-      id="convert-to"
-      label="The converted value"
-    />
-  </Group>
-</div>
+  {/if}
+</MediaQuery>
+
+<MediaQuery query="(max-width: 526px)" let:matches>
+  {#if matches}
+    <div class="w-full px-6">
+      <Group position="center" direction="column" class="items-center w-full">
+        <label
+          for="convert-from"
+          class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default"
+          >{$currentConversion.from.name} ({$currentConversion.from.value})</label
+        >
+        <Input
+          override={{
+            input: {
+              py: "2rem",
+              fontSize: "2rem",
+              backgroundColor: "#3d3b3b !important",
+              textAlign: "center !important",
+              border: "1px solid #fdcd05 !important",
+              color: "#ffffff !important",
+            },
+          }}
+          type="number"
+          bind:value={$currentConversion.from.inputted}
+          on:input={changeValue}
+          id="convert-from"
+          label="The value to be converted"
+        />
+      </Group>
+      <Group position="center" direction="column" class="my-auto mt-5">
+        <ArrowDown size={32} fill="#fdcd05" class="cursor-default" />
+      </Group>
+      <Group position="center" direction="column" class="!items-center w-full">
+        <div class="dropdown relative inline-block">
+          <button class="text-primary rounded-md pt-4 px-4 text-2xl"
+            >{$currentConversion.to.name} ({$currentConversion.to.value})</button
+          >
+          <div
+            class="dropdown-content hidden absolute bg-[#f1f1f1] min-w-[160px] shadow-lg z-[1] rounded-md"
+          >
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <p
+              class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-all ease-in duration-100"
+              on:click={() => changeToValue("em")}
+            >
+              EM (em)
+            </p>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <p
+              class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-all ease-in duration-100"
+              on:click={() => changeToValue("rem")}
+            >
+              REM (rem)
+            </p>
+          </div>
+        </div>
+        <Input
+          override={{
+            input: {
+              py: "2rem",
+              fontSize: "2rem",
+              backgroundColor: "#3d3b3b !important",
+              textAlign: "center !important",
+              border: "1px solid #fdcd05 !important",
+              color: "#ffffff !important",
+            },
+          }}
+          type="number"
+          bind:value={$currentConversion.to.inputted}
+          on:input={changeValue}
+          id="convert-to"
+          label="The converted value"
+        />
+      </Group>
+    </div>
+  {/if}
+</MediaQuery>
 
 <style>
   * {
