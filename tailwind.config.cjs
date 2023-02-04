@@ -7,11 +7,11 @@ module.exports = {
         sofiasans: ["Sofia Sans"],
       },
       colors: {
-        background: "#161212",
-        primary: "#fdcd05"
+        background: "#3d3b3b",
+        primary: "#fdcd05",
+        footer: "#1a1919"
       },
     },
   },
   plugins: [],
-  important: true
 };
