@@ -7,7 +7,7 @@ module.exports = {
         sofiasans: ["Sofia Sans"],
       },
       colors: {
-        background: "#3d3b3b",
+        background: "#212020",
         primary: "#fdcd05",
         footer: "#1a1919"
       },

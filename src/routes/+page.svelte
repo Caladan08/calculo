@@ -59,8 +59,6 @@
   }
 
   let windowWidth = 0
-
-  $: console.log(divisionValue)
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -89,7 +87,7 @@
         input: {
           py: "2rem",
           fontSize: "2rem",
-          backgroundColor: "#3d3b3b !important",
+          backgroundColor: "#212020 !important",
           textAlign: "center !important",
           border: "1px solid #fdcd05 !important",
           color: "#ffffff !important",
@@ -120,14 +118,14 @@
       >
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <p
-          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-all ease-in duration-100"
+          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-t-md transition-smooth"
           on:click={() => changeToValue("em")}
         >
           EM (em)
         </p>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <p
-          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-all ease-in duration-100"
+          class="text-black py-3 px-4 block hover:bg-[#ddd] cursor-pointer rounded-b-md transition-smooth"
           on:click={() => changeToValue("rem")}
         >
           REM (rem)
@@ -139,7 +137,7 @@
         input: {
           py: "2rem",
           fontSize: "2rem",
-          backgroundColor: "#3d3b3b !important",
+          backgroundColor: "#212020 !important",
           textAlign: "center !important",
           border: "1px solid #fdcd05 !important",
           color: "#ffffff !important",
@@ -155,26 +153,24 @@
   </Group>
 </div>
 <Divider class="!mx-6 !mb-8 " />
-<div class="flex justify-center">
-  <Group position="center" direction="column">
-    <h1 class="text-3xl text-gray-300 mb-4" align="center">Unit Conversion Table</h1>
-    <table class="text-white text-center rounded-md mb-11" id="conversion-table">
-      <thead>
-        <tr>
-          <th class="py-3 bg-primary text-white px-20 rounded-tl-md">Pixels</th>
-          <th class="py-3 bg-primary text-white px-20 rounded-tr-md">{$currentConversion.to.name}s</th>
+<h1 class="text-3xl text-gray-300 mb-8" align="center">Unit Conversion Table</h1>
+<div class="max-w-lg flex justify-center mx-auto">
+  <table class="text-white text-center rounded-md mb-11 w-full mx-5" id="conversion-table" align="center">
+    <thead>
+      <tr class="w-full">
+        <th class={`py-3 bg-primary text-white rounded-tl-md w-1/2`}>{$currentConversion.from.name}</th>
+        <th class={`py-3 bg-primary text-white rounded-tr-md w-1/2`}>{$currentConversion.to.name}s</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each dataPoints as dataPoint}
+        <tr class="transition-smooth hover:bg-[#595757] cursor-pointer" on:click={() => changeToValueFromTable(dataPoint)}>
+          <td class="border-b border-[#ddd] border-solid">{dataPoint}px</td>
+          <td class="border-b border-[#ddd] border-solid">{dataPoint / divisionValue}{$currentConversion.to.value}</td>
         </tr>
-      </thead>
-      <tbody>
-        {#each dataPoints as dataPoint}
-          <tr class="transition-all ease-in duration-100 hover:bg-[#595757] cursor-pointer" on:click={() => changeToValueFromTable(dataPoint)}>
-            <td class="border-b border-[#ddd] border-solid">{dataPoint}px</td>
-            <td class="border-b border-[#ddd] border-solid">{dataPoint / divisionValue}{$currentConversion.to.value}</td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  </Group>
+      {/each}
+    </tbody>
+  </table>
 </div>
 
 <style>
