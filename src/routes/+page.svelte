@@ -173,7 +173,7 @@
 
 <style>
   * {
-    font-family: "Sofia Sans";
+    font-family: 'Nunito', sans-serif;
   }
 
   .dropdown:hover .dropdown-content {
