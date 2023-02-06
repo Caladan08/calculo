@@ -89,7 +89,6 @@
           fontSize: "2rem",
           backgroundColor: "#212020 !important",
           textAlign: "center !important",
-          border: "1px solid #fdcd05 !important",
           color: "#ffffff !important",
           px: "0.75rem"
         },
@@ -98,7 +97,7 @@
       bind:value={$currentConversion.from.inputted}
       on:input={changeValue}
       id="convert-from"
-      label="The value to be converted"
+      class="!border-primary transition-smooth hover:!border-[#fce174]"
     />
   </Group>
   <Group position="center" direction="column" class={`my-auto ${windowWidth > 527 ? "mt-20" : "mt-5"}`}>
@@ -139,7 +138,6 @@
           fontSize: "2rem",
           backgroundColor: "#212020 !important",
           textAlign: "center !important",
-          border: "1px solid #fdcd05 !important",
           color: "#ffffff !important",
           px: "0.75rem"
         },
@@ -148,7 +146,7 @@
       bind:value={$currentConversion.to.inputted}
       on:input={changeValue}
       id="convert-to"
-      label="The converted value"
+      class="!border-primary transition-smooth hover:!border-[#fce174]"
     />
   </Group>
 </div>
