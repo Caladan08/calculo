@@ -8,7 +8,7 @@
 <SvelteUIProvider>
   <div class="h-full">
     <Navbar />
-    <div class="content bg-background">
+    <div class="content bg-background font-nunito">
       <slot />
     </div>
     <Footer />
