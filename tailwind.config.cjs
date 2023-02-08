@@ -10,7 +10,8 @@ module.exports = {
       colors: {
         background: "#212020",
         primary: "#fdcd05",
-        footer: "#1a1919"
+        footer: "#1a1919",
+        hover: "#fce174"
       },
     },
   },

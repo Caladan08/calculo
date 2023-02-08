@@ -69,6 +69,8 @@
     name="description"
     content="The easiest way to quickly convert pixels to REMs or pixels to EMs!"
   />
+  <meta name="keywords" content="converter pixels ems rems convert website">
+  <meta name="author" content="Caladan">
 </svelte:head>
 
 <h1 class={`text-4xl text-white pt-20 px-6 ${windowWidth > 527 ? "" : "pb-5"}`} align="center">
@@ -97,14 +99,14 @@
       bind:value={$currentConversion.from.inputted}
       on:input={changeValue}
       id="convert-from"
-      class="!border-primary transition-smooth hover:!border-[#fce174]"
+      class="!border-primary transition-smooth hover:!border-hover"
     />
   </Group>
   <Group position="center" direction="column" class={`my-auto ${windowWidth > 527 ? "mt-20" : "mt-5"}`}>
     {#if windowWidth > 527}
-      <ArrowRight size={32} fill="#fdcd05" class="cursor-default" />
+      <ArrowRight size={32} class="cursor-default text-primary transitions-smooth hover:text-hover" />
     {:else}
-      <ArrowDown size={32} fill="#fdcd05" class="cursor-default" />
+      <ArrowDown size={32} class="cursor-default text-primary transitions-smooth hover:text-hover" />
     {/if}
   </Group>
   <Group position="center" direction="column" class={`${windowWidth > 527 ? "" : "w-full"}`}>
@@ -146,7 +148,7 @@
       bind:value={$currentConversion.to.inputted}
       on:input={changeValue}
       id="convert-to"
-      class="!border-primary transition-smooth hover:!border-[#fce174]"
+      class="!border-primary transition-smooth hover:!border-hover"
     />
   </Group>
 </div>
@@ -155,9 +157,9 @@
 <div class="max-w-lg flex justify-center mx-auto">
   <table class="text-white text-center rounded-md mb-11 w-full mx-5" id="conversion-table" align="center">
     <thead>
-      <tr class="w-full">
-        <th class={`py-3 bg-primary text-white rounded-tl-md w-1/2`}>{$currentConversion.from.name}</th>
-        <th class={`py-3 bg-primary text-white rounded-tr-md w-1/2`}>{$currentConversion.to.name}s</th>
+      <tr class="w-full transition-smooth bg-primary hover:bg-hover">
+        <th class={`py-3 text-white rounded-tl-md w-1/2`}>{$currentConversion.from.name}</th>
+        <th class={`py-3 text-white rounded-tr-md w-1/2`}>{$currentConversion.to.name}s</th>
       </tr>
     </thead>
     <tbody>

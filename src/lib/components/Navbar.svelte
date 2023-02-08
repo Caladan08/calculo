@@ -1,5 +1,5 @@
 <div class="navbar w-full h-16 bg-background font-righteous">
   <div class="h-full flex items-center pl-5">
-    <h1 class="text-primary text-3xl cursor-default">Calculo</h1>
+    <a class="text-primary text-3xl cursor-pointer transition-smooth hover:text-hover" href="/">Calculo</a>
   </div>
 </div>
