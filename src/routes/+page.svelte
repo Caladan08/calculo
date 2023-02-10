@@ -3,7 +3,6 @@
   import { conversionData } from "$lib/stores/conversionData";
   import { currentConversion } from "$lib/stores/currentConversion";
   import ArrowRight from "carbon-icons-svelte/lib/ArrowRight.svelte";
-  import ArrowDown from "carbon-icons-svelte/lib/ArrowDown.svelte";
 
   const dataPoints = [1, 2, 4, 6, 8, 10, 15, 20]
   $: divisionValue = $conversionData.filter((conversion) => conversion.value === $currentConversion.to.value)[0].convert
@@ -58,10 +57,7 @@
     window.scrollTo(0, 0)
   }
 
-  let windowWidth = 0
 </script>
-
-<svelte:window bind:innerWidth={windowWidth} />
 
 <svelte:head>
   <title>Calculo</title>
@@ -73,11 +69,13 @@
   <meta name="author" content="Caladan">
 </svelte:head>
 
-<h1 class={`text-4xl text-white pt-20 px-6 ${windowWidth > 527 ? "" : "pb-5"}`} align="center">
-  {$currentConversion.from.name} to {$currentConversion.to.name} Converter
-</h1>
-<div class={`w-full ${windowWidth > 527 ? "flex justify-center gap-10 pt-10" : ""} px-6 mb-8`}>
-  <Group position="center" direction="column" class={`${windowWidth > 527 ? "" : "w-full"}`}>
+<Group position="center">
+  <h1 class="text-4xl text-white pt-20 px-6 max-[526px]:pb-5">
+    {$currentConversion.from.name} to {$currentConversion.to.name} Converter
+  </h1>
+</Group>
+<div class="w-full mobile:flex mobile:justify-center mobile:gap-10 mobile:pt-10 px-6 mb-8">
+  <Group position="center" direction="column" class="max-[526px]:w-full">
     <label
       for="convert-from"
       class="text-primary rounded-md pt-4 px-4 text-2xl cursor-default"
@@ -102,14 +100,10 @@
       class="!border-primary transition-smooth hover:!border-hover"
     />
   </Group>
-  <Group position="center" direction="column" class={`my-auto ${windowWidth > 527 ? "mt-20" : "mt-5"}`}>
-    {#if windowWidth > 527}
-      <ArrowRight size={32} class="cursor-default text-primary transitions-smooth hover:text-hover" />
-    {:else}
-      <ArrowDown size={32} class="cursor-default text-primary transitions-smooth hover:text-hover" />
-    {/if}
+  <Group position="center" direction="column" class="my-auto mobile:mt-20 max-[526px]:mt-5">
+    <ArrowRight size={32} class="cursor-default text-primary transitions-smooth hover:text-hover max-[526px]:rotate-90" />
   </Group>
-  <Group position="center" direction="column" class={`${windowWidth > 527 ? "" : "w-full"}`}>
+  <Group position="center" direction="column" class="max-[526px]:w-full">
     <div class="dropdown relative inline-block">
       <button class="text-primary rounded-md pt-4 px-4 text-2xl"
         >{$currentConversion.to.name} ({$currentConversion.to.value})</button
@@ -153,13 +147,15 @@
   </Group>
 </div>
 <Divider class="!mx-6 !mb-8 " />
-<h1 class="text-3xl text-gray-300 mb-8" align="center">Unit Conversion Table</h1>
+<Group position="center">
+  <h1 class="text-3xl text-gray-300 mb-8">Unit Conversion Table</h1>
+</Group>
 <div class="max-w-lg flex justify-center mx-auto">
   <table class="text-white text-center rounded-md mb-11 w-full mx-5" id="conversion-table" align="center">
     <thead>
-      <tr class="w-full transition-smooth bg-primary hover:bg-hover">
-        <th class={`py-3 text-white rounded-tl-md w-1/2`}>{$currentConversion.from.name}</th>
-        <th class={`py-3 text-white rounded-tr-md w-1/2`}>{$currentConversion.to.name}s</th>
+      <tr class="w-full transition-smooth bg-primary">
+        <th class="py-3 text-white rounded-tl-md w-1/2">{$currentConversion.from.name}</th>
+        <th class="py-3 text-white rounded-tr-md w-1/2">{$currentConversion.to.name}s</th>
       </tr>
     </thead>
     <tbody>

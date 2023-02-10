@@ -3,10 +3,6 @@ module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      fontFamily: {
-        righteous: ["Righteous"],
-        nunito: ["Nunito"]
-      },
       colors: {
         background: "#212020",
         primary: "#fdcd05",
@@ -14,6 +10,9 @@ module.exports = {
         hover: "#fce174"
       },
     },
+    screens: {
+      "mobile": "527px"
+    }
   },
   plugins: [],
 };

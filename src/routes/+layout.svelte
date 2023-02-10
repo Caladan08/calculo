@@ -7,17 +7,28 @@
 
 <SvelteUIProvider>
   <div class="h-full">
-    <Navbar />
-    <div class="content bg-background font-nunito">
+    <div class="navbar">
+      <Navbar />
+    </div>
+    <div class="content bg-background">
       <slot />
     </div>
-    <Footer />
+    <div class="footer">
+      <Footer />
+    </div>
   </div>
 </SvelteUIProvider>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
   .content {
     height: 100%;
+    font-family: 'Nunito';
+  }
+  .navbar, .footer {
+    font-family: "Righteous"
   }
   :global(*) {
     scroll-behavior: smooth;

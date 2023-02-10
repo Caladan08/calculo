@@ -8,8 +8,8 @@
 <svelte:window bind:innerWidth={windowWidth} />
 
 <div class="w-full bg-footer text-white py-10 h-44 flex justify-center items-center flex-col">
-  <h1 align="center" class="mb-5 font-bold font-sofiasans text-2xl">Made by Caladan</h1> 
-  <Group position="center">
+  <Group position="center" direction="column">
+    <h1 class="font-bold text-2xl">Made by Caladan</h1>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class={`flex items-center`}>
       <a href="https://github.com/Caladan08/calculo" target="_blank" rel="noreferrer">
